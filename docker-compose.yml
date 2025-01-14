@@ -1,0 +1,97 @@
+services:
+  mongodb:
+    image: mongo:7.0.12
+    container_name: mongoDB-car_service
+    ports:
+      - "27017:27017"
+    env_file:
+      - .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_INITDB_DATABASE = car-service
+    volumes:
+      - mongodb_data:/bitnami/mongodb
+    networks:
+      - network_sso
+    command: mongod --auth
+
+  # keycloak:
+  #   # image: quay.io/keycloak/keycloak:24.0.5
+  #   image: keycloak/keycloak:24.0.5
+  #   container_name: keycloak-car_service
+  #   command: start-dev
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - KC_DB
+  #     - KC_DB_URL_HOST
+  #     - KC_DB_URL_DATABASE
+  #     - KC_DB_PASSWORD
+  #     - KC_DB_USERNAME
+  #     - KC_DB_SCHEMA
+  #     - KEYCLOAK_ADMIN
+  #     - KEYCLOAK_ADMIN_PASSWORD
+  #     - KEYCLOAK_JDBC_PARAMS
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   networks:
+  #     - network_sso
+
+  # postgres:
+  #   image: postgres:16.4
+  #   container_name: postgres-car_service
+  #   command:
+  #     [
+  #       "postgres",
+  #       "-c",
+  #       "max_connections=200",
+  #       "-c",
+  #       "shared_buffers=24MB",
+  #       "-c",
+  #       "listen_addresses=*",
+  #     ]
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - POSTGRES_DB
+  #     - POSTGRES_USER
+  #     - POSTGRES_PASSWORD
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U postgres"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 5
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - network_sso
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   user: postgres
+
+  # redis:
+  #   image: redis:7.4.0
+  #   container_name: redis-car_service
+  #   ports:
+  #     - "6379:6379"
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - REDIS_PASSWORD=root
+  #   volumes:
+  #     - redis_data:/data
+
+volumes:
+  mongodb_data:
+    driver: local
+  # postgres_data:
+  #   driver: local
+  # redis_data:
+  #   driver: local
+
+networks:
+  network_sso:
