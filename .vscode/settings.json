@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/b8869d38-b99d-4e32-8686-95a80ed5dadf/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/car-test",
+  "appService.deploySubpath": "dist"
+}
