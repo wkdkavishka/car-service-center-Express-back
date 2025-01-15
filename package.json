@@ -15,7 +15,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --build",
     "start": "nodemon src/server.ts",
-    "start-production": "node dist/server.js"
+    "start-production": "tsc --build && node dist/server.js"
   },
   "keywords": [],
   "author": "",
