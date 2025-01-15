@@ -1,0 +1,10 @@
+
+> express-server-ts@1.0.0 start-production
+> tsc --build && node dist/server.js
+
+Listening to PORT -->  4000
+
+> express-server-ts@1.0.0 start-production
+> tsc --build && node dist/server.js
+
+Listening to PORT -->  4000

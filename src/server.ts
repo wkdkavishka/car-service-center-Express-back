@@ -40,7 +40,12 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 // Uncomment and configure CORS if needed
 app.use(
   cors({
-    origin: ["http://localhost:4200", "http://127.0.0.1:4200"], // adds a little security
+    origin: [
+      "http://localhost:4200",
+      "http://127.0.0.1:4200",
+      "http://13.211.69.158:4200",
+      "http://ec2-13-211-69-158.ap-southeast-2.compute.amazonaws.com:4200",
+    ], // adds a little security
     // methods: ["GET", "POST"],
   })
 );
