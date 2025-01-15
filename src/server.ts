@@ -29,7 +29,11 @@ app.use(express.json());
 
 // Custom middleware to log request path and method
 app.use((req: Request, res: Response, next: NextFunction) => {
-  console.log(req.path, req.method);
+  console.log(
+    `Request from: ${req.get("referer") || req.get("origin")}, URL: ${
+      req.protocol
+    }://${req.get("host")}${req.originalUrl}, Method: ${req.method}`
+  );
   next(); // Pass control to the next middleware/route handler
 });
 
