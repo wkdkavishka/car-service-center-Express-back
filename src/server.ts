@@ -6,8 +6,8 @@ import cors from "cors"; // Uncomment if you decide to use CORS
 
 // Configuration variables
 const port: number = Number(process.env.PORT) || 4000;
-// const dbName: string = "car_service";
-const databasePath: string = `mongodb+srv://car-service:car-service-1998@carservice.wh7ki.mongodb.net/`;
+const dbName: string = "car_service";
+const databasePath: string = `mongodb+srv://car-service:car-service-1998@cluster0.wh7ki.mongodb.net/${dbName}`;
 
 // Initialize Express app
 const app = express();
